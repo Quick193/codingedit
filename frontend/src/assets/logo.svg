@@ -1,0 +1,5 @@
+<svg width="120" height="40" viewBox="0 0 200 60" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <rect width="200" height="60" rx="12" fill="#2c7a7b"/>
+  <text x="20" y="38" fill="white" font-family="Inter, sans-serif" font-size="30" font-weight="700">Raise</text>
+  <circle cx="170" cy="30" r="10" fill="#4fd1c5"/>
+</svg>
