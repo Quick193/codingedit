@@ -18,9 +18,9 @@ Full-stack crowdfunding platform with React, Express, MongoDB, JWT authenticatio
 
 ### Quick start (root)
 1. From the repo root run `npm run install:all` to install both backend and frontend dependencies (this also runs automatically before `npm start` or `npm run dev`).
-2. Copy `backend/.env.example` to `backend/.env` and set `MONGO_URI` and `JWT_SECRET`.
+2. Copy `backend/.env.example` to `backend/.env` and set `MONGO_URI` and `JWT_SECRET`. If `MONGO_URI` is omitted, the backend will attempt to connect to `mongodb://127.0.0.1:27017/raise`.
 3. Copy `frontend/.env.example` to `frontend/.env` and set `VITE_API_URL` (e.g., `http://localhost:5000/api`).
-4. Start both servers concurrently: `npm run dev` (backend on port 5000, frontend on port 5173).
+4. Start both servers concurrently: `npm run dev` (backend on port 5000, frontend on port 5173). The backend automatically loads environment variables from `backend/.env` even when started via root workspace scripts.
 
 ### Backend
 1. `cd backend`
