@@ -16,6 +16,12 @@ Full-stack crowdfunding platform with React, Express, MongoDB, JWT authenticatio
 
 ## Getting Started
 
+### Quick start (root)
+1. From the repo root run `npm run install:all` to install both backend and frontend dependencies (this also runs automatically before `npm start` or `npm run dev`).
+2. Copy `backend/.env.example` to `backend/.env` and set `MONGO_URI` and `JWT_SECRET`.
+3. Copy `frontend/.env.example` to `frontend/.env` and set `VITE_API_URL` (e.g., `http://localhost:5000/api`).
+4. Start both servers concurrently: `npm run dev` (backend on port 5000, frontend on port 5173).
+
 ### Backend
 1. `cd backend`
 2. Copy `.env.example` to `.env` and set `MONGO_URI` and `JWT_SECRET`.
