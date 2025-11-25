@@ -2,9 +2,13 @@ import jwt from 'jsonwebtoken'
 import User from '../models/User.js'
 import { asyncHandler } from '../utils/errorHandler.js'
 
-const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '7d' })
+const JWT_SECRET = process.env.JWT_SECRET || 'dev-raise-secret-change-me'
+
+if (!process.env.JWT_SECRET) {
+  console.warn('JWT_SECRET not set; using a development fallback secret. Set JWT_SECRET in production.')
 }
+
+const generateToken = (id) => jwt.sign({ id }, JWT_SECRET, { expiresIn: '7d' })
 
 export const register = asyncHandler(async (req, res) => {
   const { name, email, password } = req.body
