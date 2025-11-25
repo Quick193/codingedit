@@ -1,0 +1,27 @@
+{
+  "name": "raise",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Full-stack Raise crowdfunding platform workspace",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "install:root": "npm install --include=dev --workspaces=false",
+    "install:all": "npm run install:root && npm install --workspace backend && npm install --workspace frontend",
+    "predev": "npm run install:all",
+    "prestart": "npm run install:all",
+    "dev:backend": "npm run dev --workspace backend",
+    "start:backend": "npm start --workspace backend",
+    "lint:backend": "npm run lint --workspace backend",
+    "dev:frontend": "npm run dev --workspace frontend",
+    "build:frontend": "npm run build --workspace frontend",
+    "preview:frontend": "npm run preview --workspace frontend",
+    "dev": "npm-run-all --parallel dev:backend dev:frontend",
+    "start": "npm-run-all --parallel start:backend dev:frontend"
+  },
+  "devDependencies": {
+    "npm-run-all": "^4.1.5"
+  }
+}
