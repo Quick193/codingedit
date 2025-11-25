@@ -33,10 +33,25 @@ app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000
 
-connectDB().then(() => {
-  app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`)
+const startServer = (port, attempt = 0) => {
+  const server = app.listen(port, () => {
+    console.log(`Server running on port ${port}`)
   })
+
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE' && attempt < 5) {
+      const nextPort = port + 1
+      console.warn(`Port ${port} in use, trying ${nextPort}...`)
+      startServer(nextPort, attempt + 1)
+      return
+    }
+    console.error('Server failed to start', err)
+    process.exit(1)
+  })
+}
+
+connectDB().then(() => {
+  startServer(PORT)
 }).catch((err) => {
   console.error('Database connection failed', err)
   process.exit(1)
