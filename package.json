@@ -8,7 +8,8 @@
     "backend"
   ],
   "scripts": {
-    "install:all": "npm install --workspace backend && npm install --workspace frontend",
+    "install:root": "npm install --include=dev --workspaces=false",
+    "install:all": "npm run install:root && npm install --workspace backend && npm install --workspace frontend",
     "predev": "npm run install:all",
     "prestart": "npm run install:all",
     "dev:backend": "npm run dev --workspace backend",
