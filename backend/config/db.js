@@ -3,6 +3,9 @@ import { MongoMemoryServer } from 'mongodb-memory-server'
 
 async function connectDB () {
   const uri = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/raise'
+  const mongoOptions = {
+    serverSelectionTimeoutMS: 5000
+  }
   const allowMemory = process.env.ENABLE_IN_MEMORY_DB !== 'false'
 
   if (!process.env.MONGO_URI) {
@@ -10,7 +13,7 @@ async function connectDB () {
   }
 
   try {
-    await mongoose.connect(uri)
+    await mongoose.connect(uri, mongoOptions)
     console.log(`MongoDB connected at ${uri}`)
     return
   } catch (err) {
@@ -22,7 +25,7 @@ async function connectDB () {
     console.log('Starting in-memory MongoDB instance because default connection failed...')
     const memoryServer = await MongoMemoryServer.create()
     const memoryUri = memoryServer.getUri('raise')
-    await mongoose.connect(memoryUri)
+    await mongoose.connect(memoryUri, mongoOptions)
     console.log(`In-memory MongoDB connected at ${memoryUri}`)
   } catch (err) {
     console.error('Failed to start in-memory MongoDB', err)
